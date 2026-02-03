@@ -21,39 +21,39 @@ OpenClaw Detector provides ready-to-deploy scripts that scan endpoints for OpenC
 
 ---
 
-## What Gets Scanned
+## Scanning Information
 
 ### Core Detection (affects exit code)
 
-| Item | macOS | Linux | Windows |
-|------|:-----:|:-----:|:-------:|
-| State folder (`~/.openclaw`) | ✓ | ✓ | ✓ |
-| CLI executable | ✓ | ✓ | ✓ |
-| Version info | ✓ | ✓ | ✓ |
-| Config files | ✓ | ✓ | ✓ |
-| App bundle (`.app`) | ✓ | — | — |
-| Gateway service | ✓ | ✓ | ✓ |
-| Gateway port | ✓ | ✓ | ✓ |
-| Docker images | ✓ | ✓ | ✓ |
-| Docker containers | ✓ | ✓ | ✓ |
+| Item                         | macOS | Linux | Windows |
+| ---------------------------- | :---: | :---: | :-----: |
+| State folder (`~/.openclaw`) |   ✓   |   ✓   |    ✓    |
+| CLI executable               |   ✓   |   ✓   |    ✓    |
+| Version info                 |   ✓   |   ✓   |    ✓    |
+| Config files                 |   ✓   |   ✓   |    ✓    |
+| App bundle (`.app`)          |   ✓   |   —   |    —    |
+| Gateway service              |   ✓   |   ✓   |    ✓    |
+| Gateway port                 |   ✓   |   ✓   |    ✓    |
+| Docker images                |   ✓   |   ✓   |    ✓    |
+| Docker containers            |   ✓   |   ✓   |    ✓    |
 
 ### Supplementary Checks (informational only)
 
-| Item | macOS | Linux | Windows |
-|------|:-----:|:-----:|:-------:|
-| Active processes | ✓ | ✓ | ✓ |
-| Environment variables | ✓ | ✓ | — |
-| Shell RC files | ✓ | ✓ | — |
-| Homebrew packages | ✓ | — | — |
-| Launchd agents/daemons | ✓ | — | — |
-| Login items | ✓ | — | — |
-| Systemd units | — | ✓ | — |
-| Init.d scripts | — | ✓ | — |
-| Cron jobs | — | ✓ | — |
-| Package managers (dpkg, rpm, pacman, snap, flatpak, nix) | — | ✓ | — |
-| Windows services | — | — | ✓ |
-| Registry entries | — | — | ✓ |
-| WSL instances | — | — | ✓ |
+| Item                                                     | macOS | Linux | Windows |
+| -------------------------------------------------------- | :---: | :---: | :-----: |
+| Active processes                                         |   ✓   |   ✓   |    ✓    |
+| Environment variables                                    |   ✓   |   ✓   |    —    |
+| Shell RC files                                           |   ✓   |   ✓   |    —    |
+| Homebrew packages                                        |   ✓   |   —   |    —    |
+| Launchd agents/daemons                                   |   ✓   |   —   |    —    |
+| Login items                                              |   ✓   |   —   |    —    |
+| Systemd units                                            |   —   |   ✓   |    —    |
+| Init.d scripts                                           |   —   |   ✓   |    —    |
+| Cron jobs                                                |   —   |   ✓   |    —    |
+| Package managers (dpkg, rpm, pacman, snap, flatpak, nix) |   —   |   ✓   |    —    |
+| Windows services                                         |   —   |   —   |    ✓    |
+| Registry entries                                         |   —   |   —   |    ✓    |
+| WSL instances                                            |   —   |   —   |    ✓    |
 
 ---
 
@@ -81,20 +81,20 @@ curl -sL https://raw.githubusercontent.com/sun-security/openclaw-detector/main/m
 
 ## Exit Codes
 
-| Code | Result | MDM Interpretation |
-|:----:|--------|-------------------|
-| 0 | Not found | Compliant |
-| 1 | Detected | Non-compliant |
-| 2 | Scan failed | Requires investigation |
+| Code | Result      | MDM Interpretation     |
+| :--: | ----------- | ---------------------- |
+|  0   | Not found   | Compliant              |
+|  1   | Detected    | Non-compliant          |
+|  2   | Scan failed | Requires investigation |
 
 ---
 
 ## Configuration
 
-| Environment Variable | Default | Purpose |
-|---------------------|---------|---------|
-| `OPENCLAW_PROFILE` | — | Target a specific profile in multi-instance setups |
-| `OPENCLAW_GATEWAY_PORT` | 18789 | Custom gateway port to probe |
+| Environment Variable    | Default | Purpose                                            |
+| ----------------------- | ------- | -------------------------------------------------- |
+| `OPENCLAW_PROFILE`      | —       | Target a specific profile in multi-instance setups |
+| `OPENCLAW_GATEWAY_PORT` | 18789   | Custom gateway port to probe                       |
 
 ---
 
@@ -118,13 +118,25 @@ docker-image: not-found
 
 ## MDM Deployment Guides
 
-| Platform | Documentation |
-|----------|---------------|
-| Jamf Pro | [mdm/jamf.md](mdm/jamf.md) |
-| Microsoft Intune | [mdm/intune.md](mdm/intune.md) |
-| JumpCloud | [mdm/jumpcloud.md](mdm/jumpcloud.md) |
-| Kandji | [mdm/kandji.md](mdm/kandji.md) |
+| Platform             | Documentation                                |
+| -------------------- | -------------------------------------------- |
+| Jamf Pro             | [mdm/jamf.md](mdm/jamf.md)                   |
+| Microsoft Intune     | [mdm/intune.md](mdm/intune.md)               |
+| JumpCloud            | [mdm/jumpcloud.md](mdm/jumpcloud.md)         |
+| Kandji               | [mdm/kandji.md](mdm/kandji.md)               |
 | VMware Workspace ONE | [mdm/workspace-one.md](mdm/workspace-one.md) |
+
+---
+
+## EDR Integration
+
+For organizations using EDR platforms, we provide API-based detection that queries existing telemetry rather than running scripts on endpoints.
+
+| Platform            | Documentation                                          |
+| ------------------- | ------------------------------------------------------ |
+| CrowdStrike Falcon  | [edr/crowdstrike/README.md](edr/crowdstrike/README.md) |
+
+> **Note:** EDR integration queries cloud APIs for host data collected by sensors. This differs from MDM scripts which run directly on endpoints. For maximum coverage, use both approaches if available.
 
 ---
 
@@ -136,12 +148,16 @@ openclaw-detector/
 │   └── openclaw-detector.sh    # Bash script for macOS and Linux
 ├── windows/
 │   └── openclaw-detector.ps1   # PowerShell script for Windows
-└── mdm/
-    ├── intune.md               # Microsoft Intune guide
-    ├── jamf.md                 # Jamf Pro guide
-    ├── jumpcloud.md            # JumpCloud guide
-    ├── kandji.md               # Kandji guide
-    └── workspace-one.md        # Workspace ONE guide
+├── mdm/
+│   ├── intune.md               # Microsoft Intune guide
+│   ├── jamf.md                 # Jamf Pro guide
+│   ├── jumpcloud.md            # JumpCloud guide
+│   ├── kandji.md               # Kandji guide
+│   └── workspace-one.md        # Workspace ONE guide
+└── edr/
+    └── crowdstrike/
+        ├── openclaw-detector.py  # CrowdStrike Falcon API scanner
+        └── README.md             # Setup and usage guide
 ```
 
 ---
