@@ -128,15 +128,11 @@ docker-image: not-found
 
 ---
 
-## EDR Integration
-
-For organizations using EDR platforms, we provide API-based detection that queries existing telemetry rather than running scripts on endpoints.
+## EDR Deployment Guides
 
 | Platform            | Documentation                                          |
 | ------------------- | ------------------------------------------------------ |
-| CrowdStrike Falcon  | [edr/crowdstrike/README.md](edr/crowdstrike/README.md) |
-
-> **Note:** EDR integration queries cloud APIs for host data collected by sensors. This differs from MDM scripts which run directly on endpoints. For maximum coverage, use both approaches if available.
+| CrowdStrike Falcon  | [edr/crowdstrike.md](edr/crowdstrike.md) |
 
 ---
 
@@ -169,5 +165,5 @@ MIT — see [LICENSE](LICENSE) for details.
 ---
 
 <p align="center">
-  <sub>Made with ☀️ by <a href="https://github.com/sun-security">Sun Security</a></sub>
+  <sub>Made with ☀️ by <a href="https://sun.security">Sun Security</a></sub>
 </p>
