@@ -17,7 +17,7 @@
 
 OpenClaw Detector provides ready-to-deploy scripts that scan endpoints for OpenClaw presence. The scripts examine CLI binaries, application bundles, configuration directories, background services, and container artifacts.
 
-**Built by [Sun Security](https://github.com/sun-security)** — securing AI agents across your organization.
+**Built by [Sun Security](https://github.com/sun-security)** — securing AI agents across your organization. [Website](https://sun.security/)
 
 ---
 
